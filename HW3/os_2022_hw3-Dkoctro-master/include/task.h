@@ -14,8 +14,8 @@ enum state{
 
 struct task{
     ucontext_t new_task;
-    char task_name[10];
-    char func_name[10];
+    char task_name[20];
+    char func_name[20];
     enum state st;
 
     int prior;

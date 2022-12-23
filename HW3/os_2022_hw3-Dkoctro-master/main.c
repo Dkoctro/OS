@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 		algorithm_choose = 3; // For PP
 	}
 
-	tid = 1;
+	tid = 0;
 	rr = 0;
 	rr_timer = 0;
 

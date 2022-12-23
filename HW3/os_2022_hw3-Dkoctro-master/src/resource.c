@@ -21,11 +21,14 @@ void get_resources(int count, int *resources)
 
     if(get){
         printf("Task %s gets resources", scheduling->t->task_name);
+        fflush(stdout);
         for(int i = 0; i < count; i++){
             printf(" %d", resources[i]);
+            fflush(stdout);
             res_ava[resources[i]] = true;
         }
         printf("\n");
+        fflush(stdout);
         scheduling->t->resource_num += count;
         scheduling->counting = scheduling->t->resource_num;
     } else {
@@ -34,6 +37,7 @@ void get_resources(int count, int *resources)
         scheduling->t->resource_num += count;
         scheduling->t->st = WAITING;
         printf("Task %s is waiting resource.\n", scheduling->t->task_name);
+        fflush(stdout);
         setcontext(&cpu_idle);
     }
 }
@@ -45,8 +49,11 @@ void release_resources(int count, int *resources)
         scheduling->t->resource[i] = resources[i];
     }
     printf("Task %s releases resource", scheduling->t->task_name);
+    fflush(stdout);
     for(int i = 0; i < count; i++){
         printf(" %d", resources[i]);
+        fflush(stdout);
     }
     printf("\n");
+    fflush(stdout);
 }

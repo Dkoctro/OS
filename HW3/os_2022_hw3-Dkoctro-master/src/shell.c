@@ -82,7 +82,7 @@ void shell()
 {
 	while (1) {
 		printf(">>> $ ");
-		
+		fflush(stdout);
 		char *buffer = read_line();
 		if (buffer == NULL)
 			continue;

@@ -20,6 +20,7 @@ void task_sleep(int ms)
     scheduling->t->running++;
     scheduling->wait_time += ms;
     printf("Task %s goes to sleep.\n", scheduling->t->task_name);
+    fflush(stdout);
     swapcontext(&scheduling->t->new_task, &cpu_idle);
 }
 
@@ -29,6 +30,7 @@ void task_exit()
     scheduling->t->st = TERMINATED;
     scheduling->t->running++;
     printf("Task %s has terminated.\n", scheduling->t->task_name);
+    fflush(stdout);
     swapcontext(&scheduling->t->new_task, &cpu_idle);
 }
 
@@ -50,7 +52,7 @@ void task_judge(){
                         break;
                     }
                 }
-                if(!available){
+                if(available == 0){
                     s->t->st = READY;
                 }
             }
@@ -90,10 +92,12 @@ void task_choose(){
 
             if(ready == 1){
                 printf("CPU idle\n");
+                fflush(stdout);
                 setcontext(&cpu_idle);
             } else {
                 if(s != scheduling){
                     printf("Task %s is running.\n", s->t->task_name);
+                    fflush(stdout);
                 }
                 scheduling = s;
                 scheduling->t->st = RUNNING;
@@ -121,12 +125,14 @@ void task_choose(){
 
         if(s == tail && s->t->st != READY && count != 0){
             printf("CPU idle\n");
+            fflush(stdout);
             setcontext(&cpu_idle);
         } else if(s == tail && s->t->st == TERMINATED && count == 0){
             setcontext(&init);
         } else {
             if(s != scheduling){
                 printf("Task %s is running.\n", s->t->task_name);
+                fflush(stdout);
             }
             scheduling = s;
             scheduling->t->st = RUNNING;

@@ -27,6 +27,7 @@ int help(char **args)
   	}
 	printf("%d: replay\n", i);
     printf("--------------------------------------------------\n");
+	fflush(stdout);
 	return 1;
 }
 
@@ -50,6 +51,7 @@ int echo(char **args)
 			continue;
 		}
 		printf("%s", args[i]);
+		fflush(stdout);
 		if (args[i + 1])
 			printf(" ");
 	}
@@ -95,7 +97,7 @@ int mypid(char **args)
 
 	    pid_t pid = getpid();
 	    printf("%d\n", pid);
-	
+		fflush(stdout);
 	} else if (strcmp(args[1], "-p") == 0) {
 	
 		if (args[2] == NULL) {
@@ -117,7 +119,7 @@ int mypid(char **args)
     	char *s_ppid = strtok(NULL, " ");
 	    int ppid = strtol(s_ppid, NULL, 10);
     	printf("%d\n", ppid);
-	    
+	    fflush(stdout);
 		close(fd);
 
   	} else if (strcmp(args[1], "-c") == 0) {
@@ -175,11 +177,11 @@ int add(char **args)
 	the_task->prior = atoi(args[3]);
 	the_task->waiting_time = -1;
 	the_task->waiting = 0;
-	the_task->resource  = (int*)malloc(sizeof(int) * 3);
+	the_task->resource  = (int*)malloc(sizeof(int) * 5);
 	the_task->resource_num = 0;
 	the_task->running = 0;
 	the_task->next = NULL;
-	the_task->tid = tid++;
+	the_task->tid = ++tid;
 	for(int i = 0; i < 14; i++){
 		if(strcmp(the_task->func_name, task_fun_str[i]) == 0){
 			the_task->function = task_func[i];
@@ -234,6 +236,7 @@ int add(char **args)
 		}
 	}
 	printf("Task %s is ready.\n", args[1]);
+	fflush(stdout);
 	return 1;
 }
 
@@ -268,6 +271,7 @@ int del(char **args)
 		}
 	}
 	printf("Task %s is killed.\n", args[1]);
+	fflush(stdout);
 	return 1;
 }
 
@@ -276,6 +280,7 @@ int ps(char **args)
 	char print[10];
 	printf(" TID|       name|      state| running| waiting| turnaround| resources| priority\n");
 	printf("-------------------------------------------------------------------------------\n");
+	fflush(stdout);
 	struct task *tmp = first;
 	while(tmp != NULL){
 		memset(print, '\0', 10);
@@ -317,6 +322,7 @@ int ps(char **args)
 		}
 
 		printf("%4d|%11s|%11s|%8d|%8d|%11s|%10s|%9d\n", tmp->tid, tmp->task_name, state_c, tmp->running, wait_time, turn, print, tmp->prior);
+		fflush(stdout);
 		if(tmp->next == NULL){
 			break;
 		}
@@ -341,6 +347,7 @@ int start(char **args)
 	}
 	if(s != tail || s->t->st != TERMINATED){
 		printf("Task %s is running.\n", s->t->task_name);
+		fflush(stdout);
 		scheduling = s;
 		scheduling->t->st = RUNNING;
 		task_idle();
@@ -348,6 +355,7 @@ int start(char **args)
 		swapcontext(&init, &scheduling->t->new_task);
 	}
 	printf("Simulation over\n");
+	fflush(stdout);
 	return 1;
 }
 
