@@ -34,7 +34,6 @@ void task_exit()
 
 void task_judge(){
     struct sche *s = head;
-    int available = 0;
     while(s != NULL){
         if(s->t->st == WAITING){
             s->t->waiting_time++;
@@ -44,6 +43,7 @@ void task_judge(){
                 }
             } else {
                 s->wait_time++;
+                int available = 0;
                 for(int i = s->counting; i < s->t->resource_num; i++){
                     if(res_ava[s->t->resource[i]]){
                         available = 1;
@@ -65,7 +65,7 @@ void task_judge(){
 
 void task_choose(){
     task_judge();
-    if(algorithm_choose == 3){ // RR
+    if(algorithm_choose == 2){ // RR
         struct sche *s = scheduling;
         int ready = 0;
         if(rr != tid){

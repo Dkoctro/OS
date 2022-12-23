@@ -4,7 +4,7 @@
 #include "../include/task.h"
 #include <ucontext.h>
 
-bool res_ava[8] = {false, false, false, false, false, false, false, false,};
+bool res_ava[8] = {false, false, false, false, false, false, false, false};
 
 void get_resources(int count, int *resources)
 {

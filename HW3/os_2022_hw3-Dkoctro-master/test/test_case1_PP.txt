@@ -24,3 +24,113 @@ Task www is ready.
 Task xxx is ready.
 Task yyy is ready.
 Task zzz is ready.
+Task vvv is running.
+Task vvv gets resources 0 1 2
+Task vvv goes to sleep.
+Task aaa is running.
+Task aaa has terminated.
+Task bbb is running.
+Task bbb has terminated.
+Task ccc is running.
+Task ccc has terminated.
+Task ddd is running.
+Task ddd has terminated.
+Task eee is running.
+Task eee has terminated.
+Task fff is running.
+Task fff has terminated.
+Task ggg is running.
+Task ggg has terminated.
+Task hhh is running.
+Task vvv is running.
+Task vvv releases resource 0 1 2
+Task vvv has terminated.
+Task hhh is running.
+Task hhh has terminated.
+Task iii is running.
+Task iii has terminated.
+Task www is running.
+Task www gets resources 1 4
+Task www goes to sleep.
+Task jjj is running.
+Task jjj has terminated.
+Task kkk is running.
+Task kkk has terminated.
+Task lll is running.
+Task www is running.
+Task www is waiting resource.
+Task www goes to sleep.
+Task www releases resource 1 4 5
+Task www has terminated.
+Task lll is running.
+Task lll has terminated.
+Task mmm is running.
+Task mmm has terminated.
+Task nnn is running.
+Task nnn has terminated.
+Task ooo is running.
+Task ooo has terminated.
+Task ppp is running.
+Task ppp has terminated.
+Task xxx is running.
+Task xxx gets resources 2 4
+Task xxx goes to sleep.
+Task yyy is running.
+Task yyy gets resources 1 3 6
+Task yyy goes to sleep.
+Task qqq is running.
+Task qqq has terminated.
+Task rrr is running.
+Task rrr has terminated.
+Task sss is running.
+Task sss has terminated.
+Task zzz is running.
+Task zzz is waiting resource.
+Task ttt is running.
+Task xxx is running.
+Task xxx releases resource 2 4
+Task xxx has terminated.
+Task zzz is running.
+Task zzz gets resources 0 4 7
+Task zzz goes to sleep.
+Task ttt is running.
+Task yyy is running.
+Task yyy releases resource 1 3 6
+Task yyy has terminated.
+Task ttt is running.
+Task ttt has terminated.
+Task uuu is running.
+Task zzz is running.
+Task zzz releases resource 0 4 7
+Task zzz has terminated.
+Task uuu is running.
+Task uuu has terminated.
+Simulation over
+ TID|       name|      state| running| waiting| turnaround| resources| priority
+-------------------------------------------------------------------------------
+   1|        aaa| TERMINATED|       9|       0|          9|      none|        2
+   2|        bbb| TERMINATED|      10|       0|         10|      none|        3
+   3|        ccc| TERMINATED|      10|       0|         10|      none|        4
+   4|        ddd| TERMINATED|      10|       0|         10|      none|        5
+   5|        eee| TERMINATED|       9|       0|          9|      none|        6
+   6|        fff| TERMINATED|       9|       0|          9|      none|        7
+   7|        ggg| TERMINATED|       9|       0|          9|      none|        8
+   8|        hhh| TERMINATED|      10|       0|         10|      none|        9
+   9|        iii| TERMINATED|      10|       0|         10|      none|       10
+  10|        jjj| TERMINATED|      10|       0|         10|      none|       12
+  11|        kkk| TERMINATED|       9|       0|          9|      none|       13
+  12|        lll| TERMINATED|      10|       0|         10|      none|       14
+  13|        mmm| TERMINATED|       9|       0|          9|      none|       15
+  14|        nnn| TERMINATED|       8|       0|          8|      none|       16
+  15|        ooo| TERMINATED|      10|       0|         10|      none|       17
+  16|        ppp| TERMINATED|      10|       0|         10|      none|       18
+  17|        qqq| TERMINATED|       9|       0|          9|      none|       21
+  18|        rrr| TERMINATED|       9|       0|          9|      none|       22
+  19|        sss| TERMINATED|      34|       0|         34|      none|       23
+  20|        ttt| TERMINATED|      34|       0|         34|      none|       25
+  21|        uuu| TERMINATED|      54|       0|         54|      none|       26
+  22|        vvv| TERMINATED|       2|      70|         72|     0 1 2|        1
+  23|        www| TERMINATED|       4|      22|         26|     1 4 5|       11
+  24|        xxx| TERMINATED|       2|      60|         62|       2 4|       19
+  25|        yyy| TERMINATED|       2|      80|         82|     1 3 6|       20
+  26|        zzz| TERMINATED|       3|      48|         51|     0 4 7|       24

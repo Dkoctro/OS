@@ -191,6 +191,7 @@ int add(char **args)
 	the_task->new_task.uc_stack.ss_size = 65536;
 	the_task->new_task.uc_link = NULL;
 	makecontext(&the_task->new_task, the_task->function, 0);
+	the_task->next = NULL;
 	
 	if(first == NULL){
 		first = the_task;
@@ -293,16 +294,15 @@ int ps(char **args)
 		}
 
 		char *turn = "none";
-		int total = 0;
 		if(tmp->st == TERMINATED){
-			total = tmp->waiting_time + tmp->running;
+			int total = tmp->waiting_time + tmp->running;
 			if(tmp->waiting_time < 0){
 				total++;
 			}
 			char time[10];
 			memset(time, '\0', 10);
 			sprintf(time, "%d", total);
-			strcpy(turn, time);
+			turn = time;
 		}
 
 		char *state_c = (char*)malloc(sizeof(char) * 10);
@@ -353,7 +353,7 @@ int start(char **args)
 }
 
 void signal_handle(){
-	if(algorithm_choose == 3 && scheduling->t->st == RUNNING){
+	if(algorithm_choose == 2 && scheduling->t->st == RUNNING){
 		rr_timer++;
 		if(rr_timer == 3){
 			rr_timer = 0;

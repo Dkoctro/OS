@@ -21,6 +21,10 @@ int main(int argc, char *argv[])
 		algorithm_choose = 3; // For PP
 	}
 
+	tid = 1;
+	rr = 0;
+	rr_timer = 0;
+
 	shell();
 
 	for (int i = 0; i < MAX_RECORD_NUM; ++i)
