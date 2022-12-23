@@ -305,16 +305,15 @@ int ps(char **args)
 			turn = time;
 		}
 
-		char *state_c = (char*)malloc(sizeof(char) * 10);
-		memset(state_c, '\0', 10);
+		char *state_c;
 		if(tmp->st == WAITING){
-			strcpy(state_c, "WAITING");
+			state_c = "WAITING";
 		} else if(tmp->st == READY){
-			strcpy(state_c, "READY");
+			state_c = "READY";
 		} else if(tmp->st == TERMINATED){
-			strcpy(state_c, "TERMINATED");
+			state_c = "TERMINATED";
 		} else if(tmp->st == RUNNING){
-			strcpy(state_c, "RUNNING");
+			state_c = "RUNNING";
 		}
 
 		printf("%4d|%11s|%11s|%8d|%8d|%11s|%10s|%9d\n", tmp->tid, tmp->task_name, state_c, tmp->running, wait_time, turn, print, tmp->prior);
@@ -353,7 +352,7 @@ int start(char **args)
 }
 
 void signal_handle(){
-	if(algorithm_choose == 2 && scheduling->t->st == RUNNING){
+	if(algorithm_choose == 2 && scheduling->t->st == RUNNING){ // RR
 		rr_timer++;
 		if(rr_timer == 3){
 			rr_timer = 0;
@@ -389,7 +388,7 @@ void timer(){
 	it1.it_interval.tv_sec = 0;
 	it1.it_interval.tv_usec = 10000; // 10ms
 	it1.it_value.tv_sec =0 ;
-	it1.it_value.tv_usec =100000; // 10ms
+	it1.it_value.tv_usec =100000;    // 10ms
 	if(setitimer(ITIMER_VIRTUAL, &it1, &it2) != 0){
 		perror("Timer is error");
 	}

@@ -75,9 +75,11 @@ void task_choose(){
                 } else {
                     s = head;
                 }
+
                 if(s->t->st == READY){
                     break;
                 }
+
                 if(s == scheduling && s->t->st != READY){
                     ready = 1;
                     break;
@@ -86,7 +88,7 @@ void task_choose(){
                 }
             }
 
-            if(ready){
+            if(ready == 1){
                 printf("CPU idle\n");
                 setcontext(&cpu_idle);
             } else {
